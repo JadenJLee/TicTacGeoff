@@ -1,5 +1,6 @@
 package com.example.dinogame;
 
+import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -130,6 +131,7 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
             ((Button) v).setText("X");
         } else {
             ((Button) v).setText("O");
+
         }
 
         roundCount++;
