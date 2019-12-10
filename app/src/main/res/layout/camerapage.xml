@@ -32,5 +32,6 @@
             android:text="Open Sesame"
             android:textColor="@android:color/white"
             android:onClick="takePic"/>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

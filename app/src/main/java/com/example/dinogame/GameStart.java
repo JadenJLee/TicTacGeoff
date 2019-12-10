@@ -1,9 +1,16 @@
 package com.example.dinogame;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +28,7 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
 
     private TextView player1Score;
     private TextView player2Score;
+    ImageView theView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,7 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
                 buttons[i][j] = findViewById(res);
                 System.out.println(buttons[i][j]);
                 buttons[i][j].setOnClickListener(this);
+                buttons[i][j].setBackgroundResource(android.R.drawable.btn_default);
             }
         }
         Button reset = findViewById(R.id.button_reset);
@@ -71,15 +80,19 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
 
     private void update() {
         player1Score.setText(new StringBuilder().append("Player 1 : ").append(p1pts).toString());
-        player2Score.setText(new StringBuilder().append("Player 2 : ").append(p2pts).toString());
+        player2Score.setText(new StringBuilder().append("Geoff : ").append(p2pts).toString());
     }
 
     private void resetScore() {
         for (int x = 0; x < 3; x++) {
             for (int y = 0; y < 3; y++) {
                 buttons[x][y].setText("");
+                buttons[x][y].setBackgroundResource(android.R.drawable.btn_default);
+                buttons[x][y].setVisibility(View.VISIBLE);
             }
         }
+        player1Score.setText(new StringBuilder().append("Player 1 : ").append(0).toString());
+        player2Score.setText(new StringBuilder().append("Geoff : ").append(0).toString());
         roundCount = 0;
         turn = true;
     }
@@ -125,22 +138,28 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
         if (!((Button) v).getText().toString().equals("")) {
             return;
         }
-
+        CameraPage forImage = new CameraPage();
+//        BitmapDrawable you = new BitmapDrawable(getResources(),);
+        LinearLayout root = (LinearLayout) findViewById(R.id.gameboard);
+        //root.setBackground(you);
+        //theView.setBackground(you);
         if (turn) {
             //adding a text to the tictactoe game
             ((Button) v).setText("X");
+            v.setBackgroundResource(R.drawable.cs125photo);
         } else {
             ((Button) v).setText("O");
-
+            (v).setBackgroundResource(R.drawable.geoffc);
         }
-
         roundCount++;
 
         if (winChecker()) {
             if (turn) {
                 player1Wins();
+                startActivity(new Intent(this, CameraPage.class));
             } else {
                 player2Wins();
+                startActivity(new Intent(this, GeoffFace.class));
             }
         } else if (roundCount == 9) {
             draw();

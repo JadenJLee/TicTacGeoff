@@ -41,14 +41,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     startActivity(new Intent(this, CantPlay.class));
                 }
-                return;
             }
         }
     }
     public void startDino(View view) {
-        Intent intent = new Intent (this, CameraPage.class);
+        Intent intent = new Intent (this, GameStart.class);
         startActivity(intent);
-        //finish();
     }
-
 }
