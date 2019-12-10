@@ -97,6 +97,8 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
         turn = true;
     }
 
+    // Winning Logic Taken from:
+    // https://codinginflow.com/tutorials/android/tic-tac-toe/part-2-winning-logic
     private boolean winChecker() {
         String[][] field = new String[3][3];
 
@@ -138,9 +140,9 @@ public class GameStart extends AppCompatActivity implements View.OnClickListener
         if (!((Button) v).getText().toString().equals("")) {
             return;
         }
-        CameraPage forImage = new CameraPage();
+        //CameraPage forImage = new CameraPage();
 //        BitmapDrawable you = new BitmapDrawable(getResources(),);
-        LinearLayout root = (LinearLayout) findViewById(R.id.gameboard);
+        //LinearLayout root = (LinearLayout) findViewById(R.id.gameboard);
         //root.setBackground(you);
         //theView.setBackground(you);
         if (turn) {
